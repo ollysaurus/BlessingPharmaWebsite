@@ -199,3 +199,21 @@
 .focus\:ring-medical-green:focus {
   --tw-ring-color: var(--medical-green);
 }
+
+/* Cursor states for better visibility */
+p, span, h1, h2, h3, h4, h5, h6, li, div:not([role="button"]):not(button) {
+  cursor: text;
+}
+
+p:hover, span:hover, h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, li:hover {
+  cursor: text;
+}
+
+/* Ensure interactive elements have pointer cursor */
+button, a, [role="button"], .cursor-pointer {
+  cursor: pointer !important;
+}
+
+button:hover, a:hover, [role="button"]:hover, .cursor-pointer:hover {
+  cursor: pointer !important;
+}
