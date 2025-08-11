@@ -217,3 +217,12 @@ button, a, [role="button"], .cursor-pointer {
 button:hover, a:hover, [role="button"]:hover, .cursor-pointer:hover {
   cursor: pointer !important;
 }
+
+/* Fix text cursor (caret) color to be black */
+input, textarea, [contenteditable] {
+  caret-color: #000000 !important;
+}
+
+input:focus, textarea:focus, [contenteditable]:focus {
+  caret-color: #000000 !important;
+}
