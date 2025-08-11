@@ -12,6 +12,7 @@ import { useToast } from "@/hooks/use-toast";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { insertContactSubmissionSchema } from "@shared/schema";
+import emailjs from '@emailjs/browser'; // Import emailjs
 
 const contactFormSchema = insertContactSubmissionSchema;
 
@@ -30,31 +31,30 @@ export default function ContactSection() {
     resolver: zodResolver(contactFormSchema),
   });
 
-  const submitContactMutation = useMutation({
-    mutationFn: async (data: ContactFormData) => {
-      return await apiRequest("POST", "/api/contact", data);
-    },
-    onSuccess: () => {
+  const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
+
+    const serviceID = "service_fbosilu"; // Replace with your service ID
+    const templateID = "template_f4mk3ij"; // Replace with your template ID
+    const publicKey = "YsFcfg-gNyJqsF5Wo"; // Replace with your public key
+
+    try {
+      await emailjs.send(serviceID, templateID, data, publicKey);
       toast({
         title: "Message Sent Successfully",
         description: "Thank you for contacting us. We'll get back to you within 24 hours.",
       });
       reset();
-      setIsSubmitting(false);
-    },
-    onError: () => {
+    } catch (error) {
+      console.error("Failed to send email:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or call us directly.",
         variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
-    },
-  });
-
-  const onSubmit = (data: ContactFormData) => {
-    setIsSubmitting(true);
-    submitContactMutation.mutate(data);
+    }
   };
 
   return (
@@ -219,7 +219,7 @@ export default function ContactSection() {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>Monday - Friday:</span>
-                  <span>7:00 AM - 7:00 PM</span>
+                  <span>8:00 AM - 5:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Saturday:</span>

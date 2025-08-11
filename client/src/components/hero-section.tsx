@@ -29,8 +29,7 @@ export default function HeroSection() {
               </Link>
               <Button 
                 onClick={scrollToContact}
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-medical-green px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
+                className="bg-white text-medical-green hover:bg-medical-green hover:text-white px-8 py-3 rounded-lg font-semibold text-lg transition-colors"
               >
                 Request Quote
               </Button>
