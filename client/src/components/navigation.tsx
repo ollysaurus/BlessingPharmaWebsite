@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import mainLogoWord from "@/assets/logos/mainLogoWord.webp";
 
 export default function Navigation() {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // useEffect to handle scrolling on route change.
+  useEffect(() => {
+    // If the URL contains '#contact', scroll to that element.
+    if (window.location.hash === "#contact") {
+      const contactSection = document.getElementById("contact");
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Otherwise, scroll to the top of the page for normal navigation.
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
 
   const scrollToContact = () => {
     if (location === "/") {
@@ -14,7 +29,8 @@ export default function Navigation() {
         contactSection.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // Navigate to home page and then scroll to contact
+      // Use window.location.href to navigate to the home page with the hash
+      // The useEffect hook will now handle the scrolling correctly
       window.location.href = "/#contact";
     }
     setMobileMenuOpen(false);
@@ -26,12 +42,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-medical-green rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z"></path>
-                </svg>
-              </div>
-              <span className="ml-3 text-xl font-bold text-gray-900">Blessing Pharma and Medical Supply</span>
+              <img src={mainLogoWord} alt="Blessing Pharma and Medical Supply" className="w-auto h-64" />
             </Link>
           </div>
           

@@ -52,9 +52,9 @@
   --spacing: 0.25rem;
   
   /* Medical specific colors */
-  --medical-green: hsl(142 69% 58%);
-  --medical-green-dark: hsl(158 100% 19%);
-  --medical-yellow: hsl(48 95% 76%);
+  --medical-green: hsl(120 55% 47%);
+  --medical-green-dark: hsl(123 41% 45%);
+  --medical-yellow: hsl(44 100% 50%);
   --medical-white: hsl(0 0% 100%);
 }
 
@@ -200,5 +200,10 @@
   --tw-ring-color: var(--medical-green);
 }
 
+
+.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 
