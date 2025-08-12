@@ -23,7 +23,7 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/products">
-                <Button className="bg-medical-yellow text-medical-green-dark hover:bg-yellow-300 px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
+                <Button className="bg-medical-yellow text-medical-green-dark hover:bg-white hover:text-medical-green-dark px-8 py-3 rounded-lg font-semibold text-lg transition-colors">
                   View Products
                 </Button>
               </Link>
